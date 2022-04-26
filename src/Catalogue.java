@@ -1,6 +1,8 @@
 import java.util.Map;
-import java.util.Collection;
-public class Catalogue {
+import java.util.Collections;
+
+
+public class Catalogue{
 
     /**
      * Constructor
@@ -8,6 +10,7 @@ public class Catalogue {
     public Catalogue(){
 
     }
+
 
     private static Map<Integer, String> filter = Map.of(
         0, "Alphabetical Order: AtoZ",
@@ -28,6 +31,7 @@ public class Catalogue {
     public void setFilter(int type){
         if (filter.containsKey(type)) {
             System.out.println("Filter Type: " + filter.get(type));
+            filterItems(type);
         } else {
             System.out.println("Invalid Filter Type: " + type);
         }
@@ -35,9 +39,12 @@ public class Catalogue {
 
     public void filterItems(int type){
         switch(type){
-
-            case(0):
-
+            case(0): sortAtoZ();
+            case(1): sortZtoA();
+            case(2): sortLowtoHigh();
+            case(3): sortHightoLow();
+            case(4): sortEarlyDate();
+            case(5): sortLaterDate();
         }
     }
 
@@ -51,26 +58,30 @@ public class Catalogue {
     }
 
     public void sortAtoZ(){
-
+        System.out.println("Sorted AtoZ");
     }
 
     public void sortZtoA(){
+        System.out.println("Sorted ZtoA");
 
     }
 
     public void sortLowtoHigh(){
+        System.out.println("Sorted Low to High");
 
     }
 
     public void sortHightoLow(){
+        System.out.println("Sorted High to Low");
 
     }
 
     public void sortEarlyDate(){
+        System.out.println("Sorted from Earliest to Latest");
 
     }
-    
-    public void sortLaterDate(){
 
+    public void sortLaterDate(){
+        System.out.println("Sorted from Latest to Earliest");
     }
 }
