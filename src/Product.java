@@ -70,8 +70,8 @@ public class Product {
     /**
      *
      */
-    private void decrementStock(){
-        numberInStock--;
+    private void decrementStock(int count){
+        numberInStock -= count;
         if (numberInStock < 1) {
             ProductStatus status = ProductStatus.OutOfStock;
         } else {
@@ -83,11 +83,24 @@ public class Product {
      *
      */
     public void printAttributes(){
-        System.out.println("Item Price: $" + this.price);
+        System.out.println("Item Price: $" + String.format("%,.2f", this.price));
         System.out.println("Item Color: " + this.color);
         System.out.println("Number in Stock: " + this.numberInStock);
         System.out.println("Item Name: " + this.productName);
         System.out.println("Item Listing Date: " + this.listingDate);
+    }
+
+    /**
+     *
+     * @param quantity
+     */
+    public void sell(int... quantity){
+        if (quantity[0] >= this.numberInStock) {
+            this.decrementStock(quantity[0]);
+            System.out.println("There are now " + this.numberInStock + " items left in stock.");
+        } else {
+            System.out.println("Please select a smaller quantity.");
+        }
     }
 
     //public String generateItemID(){
