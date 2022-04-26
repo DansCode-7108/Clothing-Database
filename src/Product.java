@@ -7,22 +7,38 @@ public class Product {
     public String productName;
     public Date listingDate;
 
-    public enum ProductCategory{
+    protected enum ProductCategory{
         Coat,
         Jersey,
         Socks,
-        Beanie;
+        Beanie
     }
 
     public enum ProductStatus{
         InStock,
-        OutOfStock;
+        OutOfStock
     }
 
+    public void setPrice(double price){
+        this.price = price;
+    }
 
-    public void setStockCount(int stockCount) {
+    public double getPrice(){
+        return this.price;
+    }
+
+    protected void setStockCount(int stockCount) {
         numberInStock = stockCount;
-        if (stockCount < 1) {
+        if (numberInStock < 1) {
+            ProductStatus status = ProductStatus.OutOfStock;
+        } else {
+            ProductStatus status = ProductStatus.InStock;
+        }
+    }
+
+    protected void decrementStock(){
+        numberInStock -= 1;
+        if (numberInStock < 1) {
             ProductStatus status = ProductStatus.OutOfStock;
         } else {
             ProductStatus status = ProductStatus.InStock;
