@@ -33,6 +33,14 @@ public class Catalogue {
         }
     }
 
+    public void filterItems(int type){
+        switch(type){
+
+            case(0):
+
+        }
+    }
+
     public void remove(Product p){
 
     }
@@ -40,5 +48,29 @@ public class Catalogue {
     public Product get(Product p){
 
         return p;
+    }
+
+    public void sortAtoZ(){
+
+    }
+
+    public void sortZtoA(){
+
+    }
+
+    public void sortLowtoHigh(){
+
+    }
+
+    public void sortHightoLow(){
+
+    }
+
+    public void sortEarlyDate(){
+
+    }
+    
+    public void sortLaterDate(){
+
     }
 }
