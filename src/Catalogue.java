@@ -1,7 +1,6 @@
 import java.util.Map;
 import java.util.Collections;
 
-
 public class Catalogue{
 
     /**
@@ -57,10 +56,12 @@ public class Catalogue{
         return p;
     }
 
+    //Linked List?
     public void sortAtoZ(){
         System.out.println("Sorted AtoZ");
     }
 
+    //Linked List?
     public void sortZtoA(){
         System.out.println("Sorted ZtoA");
 
@@ -82,6 +83,6 @@ public class Catalogue{
     }
 
     public void sortLaterDate(){
-        System.out.println("Sorted from Latest to Earliest");
+        System.out.println("Sorted from Latest to Earlier");
     }
 }
