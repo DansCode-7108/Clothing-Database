@@ -10,11 +10,6 @@ public class driver extends Exception{
         int filterType = 2;
         store1.setFilter(filterType);
 
-        System.out.println(socks1.price);
-        System.out.println(socks1.color);
-        System.out.println(socks1.numberInStock);
-        System.out.println(socks1.productName);
-        System.out.println(socks1.listingDate);
-
+        socks1.printAttributes();
     }
 }
