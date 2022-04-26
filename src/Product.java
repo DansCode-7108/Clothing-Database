@@ -27,7 +27,7 @@ public class Product {
         return this.price;
     }
 
-    protected void setStockCount(int stockCount) {
+    public void setStockCount(int stockCount) {
         numberInStock = stockCount;
         if (numberInStock < 1) {
             ProductStatus status = ProductStatus.OutOfStock;
@@ -36,6 +36,10 @@ public class Product {
         }
     }
 
+    public int getStockCount(){
+        return this.numberInStock;
+    }
+    
     protected void decrementStock(){
         numberInStock -= 1;
         if (numberInStock < 1) {
