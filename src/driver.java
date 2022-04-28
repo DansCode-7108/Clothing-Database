@@ -21,5 +21,11 @@ public class driver extends Exception{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
         LocalDateTime today = LocalDateTime.now();
         System.out.println(dtf.format(today));
+
+
+        LocalDateTime alsoToday = LocalDateTime.now();
+        System.out.println(dtf.format(alsoToday));
+
+        System.out.println(today.compareTo(alsoToday));
     }
 }
