@@ -82,12 +82,12 @@ public class Product {
     /**
      *
      */
-    public void printAttributes(){
-        System.out.println("Item Price: $" + String.format("%,.2f", this.price));
-        System.out.println("Item Color: " + this.color);
-        System.out.println("Number in Stock: " + this.numberInStock);
-        System.out.println("Item Name: " + this.productName);
-        System.out.println("Item Listing Date: " + this.listingDate);
+    public String toString(){
+        return ("Item Price: $" + String.format("%,.2f", this.price)
+                + "\nItem Color: " + this.color
+                + "\nNumber in Stock: " + this.numberInStock
+                + "\nItem Name: " + this.productName
+                + "\nItem Listing Date: " + this.listingDate);
     }
 
     /**

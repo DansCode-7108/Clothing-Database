@@ -1,10 +1,9 @@
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class Catalogue{
 
     private HashMap<Integer, String> filter = new HashMap<>();
-    private LinkedList<Product> productList = new LinkedList<>();
+    private LinkedList PriceList;
 
     /**
      * Constructor
@@ -14,11 +13,11 @@ public class Catalogue{
         filter.put(1, "Price: HightoLow");
         filter.put(2, "Date: Earlier");
         filter.put(3, "Date: Later");
+
+        PriceList = new LinkedList();
+
     }
 
-    private void createFilterMap(){
-
-    }
 
     public void setFilter(int type){
         if (filter.containsKey(type)) {
@@ -39,7 +38,7 @@ public class Catalogue{
     }
 
     public void add(Product p){
-
+        PriceList.insertEnd(p);
     }
 
     public void remove(Product p){

@@ -1,54 +1,73 @@
-class LinkedList {
+
+
+public class LinkedList {
     Node head;
+    Node last;
+
+    public LinkedList() {
+        head.next = last;
+        last.prev = head;
+        last.next = null;
+    }
 
     // Node class for creating nodes
-    class Node {
-        int val;
+    public class Node {
+        Product contents;
         Node next;
+        Node prev;
 
-        Node(int x) {
-            val = x;
+        Node(Product p) {
+            contents = p;
             next = null;
+            prev = null;
         }
     }
 
     // Insert node in the beginning
-    public void insertBeginning(int data) {
+    public void insertBeginning(Product p) {
         // insert the data
-        Node newNode = new Node(data);
-        newNode.next = head;
-        head = newNode;
+        Node newNode = new Node(p);
+        newNode.next = head.next;
+        newNode.next.prev = newNode;
+        head.next = newNode;
+        newNode.prev = head;
+
+        if (head.next == last) {
+            last = newNode;
+        }
     }
 
     // Insert after any given node
-    public void insert(Node prevNode, int data) {
-        if (prevNode == null) {
-            System.out.println("The previous node cannot be null");
+    public void insert(Node refNode, Product p) {
+        if (null == refNode) {
+            System.out.println("The reference node cannot be null");
             return;
         }
-        Node newNode = new Node(data);
-        newNode.next = prevNode.next;
-        prevNode.next = newNode;
+
+        Node newNode = new Node(p);
+        newNode.next = refNode.next;
+        newNode.next.prev = newNode;
+        refNode.next = newNode;
+        newNode.prev = refNode;
+
+        if (refNode == last) {
+            last = newNode;
+        }
     }
 
     // Insert at the end node
-    public void insertEnd(int data) {
-        Node newNode = new Node(data);
+    public void insertEnd(Product p) {
 
-        if (head == null) {
-            head = new Node(data);
+        if (head.next == last) {
+            insertBeginning(p);
             return;
         }
 
-        newNode.next = null;
-
-        Node last = head;
-        while (last.next != null) {
-            last = last.next;
-        }
-
+        Node newNode = new Node(p);
         last.next = newNode;
-        return;
+        newNode.prev = last;
+        newNode.next = null;
+        last = newNode;
     }
 
     // Delete a node
@@ -77,69 +96,48 @@ class LinkedList {
     }
 
     // Search a node to see if it exists
-    boolean search(Node head, int key) {
+    boolean search(Product p) {
         Node currentNode = head;
         while (currentNode != null) {
-            if (currentNode.val == key) return true;
+            if (currentNode.contents == p) return true;
             currentNode = currentNode.next;
         }
         return false;
     }
 
     // Sorts the linked list using bubble sort
-    void sortList(Node head) {
-        Node currentNode = head;
+    void sortList() {
+        Node current = this.head;
         Node index = null;
-        int temp;
+        double temp;
 
-        if (head == null) return;
-        
+        if (head.next == null) return;
+
         else {
-            while (currentNode != null) {
+            while (current != null) {
                 // Index points to the next node
-                index = currentNode.next;
+                index = current.next;
 
                 while (index != null) {
-                    if (currentNode.val > index.val) {
-                        temp = currentNode.val;
-                        currentNode.val = index.val;
-                        index.val = temp;
+                    if (current.contents.price > index.contents.price) {
+                        temp = current.contents.price;
+                        current.contents.price = index.contents.price;
+                        index.contents.price = temp;
                     }
                     index = index.next;
                 }
-                currentNode = currentNode.next;
+                current = current.next;
             }
         }
     }
 
     // Print the linked list
     public void printList() {
-        Node node = head;
-        while (node != null) {
-            System.out.print(node.val + " ");
-            node = node.next;
+        Node current = head;
+        while (current != null) {
+            System.out.println(current.contents.toString());
+            current = current.next;
         }
 
-    }
-
-    public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-
-        list.insertEnd(1);
-        list.insertBeginning(2);
-        list.insertBeginning(3);
-        list.insertEnd(4);
-        list.insert(list.head.next, 5);
-
-        System.out.println("Linked list: ");
-        list.printList();
-        
-        System.out.println("After deleting: ");
-        list.delete(3);
-        list.printList();
-
-        list.sortList(list.head);
-        System.out.println("\nSorted List: ");
-        list.printList();
     }
 }

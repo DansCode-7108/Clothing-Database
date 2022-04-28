@@ -14,11 +14,13 @@ public class driver extends Exception{
 
 
 
-        int filterType = 2;
+        int filterType = 0;
         store1.setFilter(filterType);
 
+        store1.add(socks1);
+
         socks1.setStockCount(3);
-        socks1.printAttributes();
+        socks1.toString();
         socks1.sell(1);
         socks1.sell(2);
 
@@ -31,5 +33,24 @@ public class driver extends Exception{
         //System.out.println(today.compareTo(alsoToday));//
         //Date date = new Date();
         //System.out.println(date);
+
+        LinkedList list = new LinkedList();
+
+        list.insertEnd(1);
+        list.insertBeginning(2);
+        list.insertBeginning(3);
+        list.insertEnd(4);
+        list.insert(list.head.next, 5);
+
+        System.out.println("Linked list: ");
+        list.printList();
+
+        System.out.println("After deleting: ");
+        list.delete(3);
+        list.printList();
+
+        list.sortList(list.head);
+        System.out.println("\nSorted List: ");
+        list.printList();
     }
 }
