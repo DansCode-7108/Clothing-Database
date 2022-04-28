@@ -1,31 +1,24 @@
-import java.util.Map;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Catalogue{
+
+    private HashMap<Integer, String> filter = new HashMap<>();
+    private LinkedList<Product> productList = new LinkedList<>();
 
     /**
      * Constructor
      */
     public Catalogue(){
-
+        filter.put(0, "Price: LowtoHigh");
+        filter.put(1, "Price: HightoLow");
+        filter.put(2, "Date: Earlier");
+        filter.put(3, "Date: Later");
     }
 
+    private void createFilterMap(){
 
-    private static Map<Integer, String> filter = Map.of(
-        0, "Alphabetical Order: AtoZ",
-            1, "Alphabetical Order: ZtoA",
-            2, "Price: LowtoHigh",
-            3, "Price: HightoLow",
-            4, "Date: Earlier",
-            5, "Date: Later"
-    );
-
-    //public enum filter{
-    //    AtoZ,
-    //    ZtoA,
-    //    LowtoHigh,
-    //    HightoLow;
-    //}
+    }
 
     public void setFilter(int type){
         if (filter.containsKey(type)) {
@@ -38,13 +31,15 @@ public class Catalogue{
 
     public void filterItems(int type){
         switch(type){
-            case(0): sortAtoZ();
-            case(1): sortZtoA();
-            case(2): sortLowtoHigh();
-            case(3): sortHightoLow();
-            case(4): sortEarlyDate();
-            case(5): sortLaterDate();
+            case(0): showLowtoHigh();
+            case(1): showHightoLow();
+            case(2): showEarlyDate();
+            case(3): showLaterDate();
         }
+    }
+
+    public void add(Product p){
+
     }
 
     public void remove(Product p){
@@ -56,33 +51,23 @@ public class Catalogue{
         return p;
     }
 
-    //Linked List?
-    public void sortAtoZ(){
-        System.out.println("Sorted AtoZ");
-    }
 
-    //Linked List?
-    public void sortZtoA(){
-        System.out.println("Sorted ZtoA");
+    public void showLowtoHigh(){
+        System.out.println("Showing Price from Low to High");
 
     }
 
-    public void sortLowtoHigh(){
-        System.out.println("Sorted Low to High");
+    public void showHightoLow(){
+        System.out.println("Showing Price from High to Low");
 
     }
 
-    public void sortHightoLow(){
-        System.out.println("Sorted High to Low");
+    public void showEarlyDate(){
+        System.out.println("Showing Date from Earliest to Latest");
 
     }
 
-    public void sortEarlyDate(){
-        System.out.println("Sorted from Earliest to Latest");
-
-    }
-
-    public void sortLaterDate(){
-        System.out.println("Sorted from Latest to Earlier");
+    public void showLaterDate(){
+        System.out.println("Showing Date from Latest to Earliest");
     }
 }
