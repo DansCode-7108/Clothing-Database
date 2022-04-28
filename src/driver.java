@@ -1,6 +1,7 @@
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Random;
 
 public class driver extends Exception{
 
@@ -36,11 +37,20 @@ public class driver extends Exception{
 
         LinkedList list = new LinkedList();
 
+        /** 
         list.insertEnd(1);
         list.insertBeginning(2);
         list.insertBeginning(3);
         list.insertEnd(4);
         list.insert(list.head.next, 5);
+        **/
+        
+        Random random = new Random();
+        for(int i=0; i<5; i++) {
+            list.insertBeginning(random.nextInt(20));
+            list.insertEnd(random.nextInt(30));
+            list.insert(list.head.next,random.nextInt(25));
+        }
 
         System.out.println("Linked list: ");
         list.printList();
