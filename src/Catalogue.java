@@ -2,15 +2,15 @@ import java.util.HashMap;
 
 public class Catalogue{
 
-    private HashMap<Integer, String> filter = new HashMap<>();
-    private LinkedList PriceList;
+    private final HashMap<Integer, String> filter = new HashMap<>();
+    private final LinkedList PriceList;
 
     /**
      * Constructor
      */
     public Catalogue(){
-        filter.put(0, "Price: LowtoHigh");
-        filter.put(1, "Price: HightoLow");
+        filter.put(0, "Price: LowToHigh");
+        filter.put(1, "Price: HighToLow");
         filter.put(2, "Date: Earlier");
         filter.put(3, "Date: Later");
 
@@ -26,8 +26,8 @@ public class Catalogue{
 
         System.out.println("Filter Type: " + filter.get(type));
         switch(type){
-            case(0):{ showLowtoHigh();}
-            case(1):{ showHightoLow();}
+            case(0):{ showLowToHigh();}
+            case(1):{ showHighToLow();}
             case(2):{ showEarlyDate();}
             case(3):{ showLaterDate();}
         }
@@ -46,12 +46,12 @@ public class Catalogue{
         return p;
     }
 
-    public void showLowtoHigh(){
+    public void showLowToHigh(){
         System.out.println("Showing Price from Low to High \n");
         PriceList.printFromHead();
     }
 
-    public void showHightoLow(){
+    public void showHighToLow(){
         System.out.println("Showing Price from High to Low \n");
         PriceList.printFromLast();
     }

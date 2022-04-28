@@ -1,7 +1,4 @@
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -10,11 +7,7 @@ public class driver extends Exception{
 
     public static void main(String[] args){
         Catalogue store1 = new Catalogue();
-        Catalogue store2 = new Catalogue();
 
-
-        Product socks1 = new Socks(19.99, 1, "" + "Blue");
-        Product socks2 = new Socks(19.99, 5, "" + "Red");
 
 
         HashMap<Integer, String> colors = new HashMap<>();
@@ -36,7 +29,7 @@ public class driver extends Exception{
 
         store1.filterItems(0);
         store1.sortAll();
-        store1.showLowtoHigh();
+        store1.showLowToHigh();
 
 
         //int filterType = 0;

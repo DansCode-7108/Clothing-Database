@@ -11,12 +11,12 @@ public class LinkedList {
     }
 
     // Node class for creating nodes
-    public class Node {
+    public static class Node {
         Product contents;
         Node next;
         Node prev;
 
-        Node(Product p) {
+        public Node(Product p) {
             contents = p;
             next = null;
             prev = null;
