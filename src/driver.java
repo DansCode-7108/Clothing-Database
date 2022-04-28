@@ -1,4 +1,5 @@
-
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 public class driver extends Exception{
@@ -15,5 +16,10 @@ public class driver extends Exception{
         socks1.printAttributes();
         socks1.sell(1);
         socks1.sell(2);
+
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        LocalDateTime today = LocalDateTime.now();
+        System.out.println(dtf.format(today));
     }
 }
