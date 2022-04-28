@@ -139,7 +139,7 @@ class LinkedList {
         list.printList();
 
         list.sortList(list.head);
-        System.out.println("\nSorted List: ");
+        System.out.println("Sorted List: ");
         list.printList();
     }
 }
