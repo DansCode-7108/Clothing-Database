@@ -1,8 +1,8 @@
 
 
 public class LinkedList {
-    Node head;
-    Node last;
+    Node head = new Node(new Product());
+    Node last = new Node(new Product());
 
     public LinkedList() {
         head.next = last;
@@ -71,29 +71,29 @@ public class LinkedList {
     }
 
     // Delete a node
-    void delete(int index) {
-        if (head == null) return;
+   //public void delete(Product p) {
+   //    if ((last.contents == p) && (last.next == null)) return;
 
-        Node temp = head;
+   //    Node current = head;
 
-        if (index == 0) {
-            head = temp.next;
-            return;
-        }
+   //    if (index == 0) {
+   //        head = current.next;
+   //        return;
+   //    }
 
-        // Find the index node to be deleted
-        for (int i = 0; temp != null && i < index - 1; i++) {
-            temp = temp.next;
-        }
+   //    // Find the index node to be deleted
+   //    for (int i = 0; null != current.next && i < index - 1; i++) {
+   //        current = current.next;
+   //    }
 
-        // If the index is not present
-        if (temp == null || temp.next == null) return;
+   //    // If the index is not present
+   //    if (current == null || current.next == null) return;
 
-        // Remove 
-        Node next = temp.next.next;
+   //    // Remove
+   //    Node next = current.next.next;
 
-        temp.next = next;
-    }
+   //    current.next = next;
+   //}
 
     // Search a node to see if it exists
     boolean search(Product p) {
@@ -106,7 +106,7 @@ public class LinkedList {
     }
 
     // Sorts the linked list using bubble sort
-    void sortList() {
+    public void sortList() {
         Node current = this.head;
         Node index = null;
         double temp;
@@ -132,12 +132,19 @@ public class LinkedList {
     }
 
     // Print the linked list
-    public void printList() {
+    public void printFromHead() {
         Node current = head;
         while (current != null) {
-            System.out.println(current.contents.toString());
+            System.out.println(current.contents.toString() + "\n");
             current = current.next;
         }
+    }
 
+    public void printFromLast(){
+        Node current = last;
+        while (current != head) {
+            System.out.println(current.contents.toString() + "\n");
+            current = current.prev;
+        }
     }
 }

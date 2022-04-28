@@ -83,10 +83,10 @@ public class Product {
      *
      */
     public String toString(){
-        return ("Item Price: $" + String.format("%,.2f", this.price)
+        return ("Item Name: " + this.productName
+                + "\nItem Price: $" + String.format("%,.02f", this.price)
                 + "\nItem Color: " + this.color
                 + "\nNumber in Stock: " + this.numberInStock
-                + "\nItem Name: " + this.productName
                 + "\nItem Listing Date: " + this.listingDate);
     }
 

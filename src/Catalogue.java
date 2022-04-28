@@ -18,22 +18,18 @@ public class Catalogue{
 
     }
 
-
-    public void setFilter(int type){
-        if (filter.containsKey(type)) {
-            System.out.println("Filter Type: " + filter.get(type));
-            filterItems(type);
-        } else {
-            System.out.println("Invalid Filter Type: " + type);
-        }
-    }
-
     public void filterItems(int type){
+        if (!filter.containsKey(type)) {
+            System.out.println("Invalid Filter Type: " + type);
+            return;
+        }
+
+        System.out.println("Filter Type: " + filter.get(type));
         switch(type){
-            case(0): showLowtoHigh();
-            case(1): showHightoLow();
-            case(2): showEarlyDate();
-            case(3): showLaterDate();
+            case(0):{ showLowtoHigh();}
+            case(1):{ showHightoLow();}
+            case(2):{ showEarlyDate();}
+            case(3):{ showLaterDate();}
         }
     }
 
@@ -50,23 +46,26 @@ public class Catalogue{
         return p;
     }
 
-
     public void showLowtoHigh(){
-        System.out.println("Showing Price from Low to High");
-
+        System.out.println("Showing Price from Low to High \n");
+        PriceList.printFromHead();
     }
 
     public void showHightoLow(){
-        System.out.println("Showing Price from High to Low");
-
+        System.out.println("Showing Price from High to Low \n");
+        PriceList.printFromLast();
     }
 
     public void showEarlyDate(){
-        System.out.println("Showing Date from Earliest to Latest");
+        System.out.println("Showing Date from Earliest to Latest \n");
 
     }
 
     public void showLaterDate(){
-        System.out.println("Showing Date from Latest to Earliest");
+        System.out.println("Showing Date from Latest to Earliest \n");
+    }
+
+    public void sortAll(){
+        PriceList.sortList();
     }
 }
