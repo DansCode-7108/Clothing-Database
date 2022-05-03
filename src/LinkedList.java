@@ -102,7 +102,7 @@ public class LinkedList {
     }
 
     // Sorts the linked list using bubble sort
-    public void sortList() {
+    public void sortByPrice() {
         Node current = this.head;
         Node index;
         double temp;
