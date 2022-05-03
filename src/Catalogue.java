@@ -5,7 +5,8 @@ import java.util.Random;
 public class Catalogue{
 
     private final String name;
-    private final HashSet<Product> ProductMap = new HashSet<>();
+    private final Random gen = new Random();
+    private final HashMap<String, Product> ProductMap = new HashMap<>();
     private final HashMap<Integer, String> colors = new HashMap<>();
     private final LinkedList PriceList, AlphaOrderList, DateList;
 
@@ -27,38 +28,36 @@ public class Catalogue{
     }
 
     public void fill(int num){
-
-        Random gen = new Random();
-
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < num; i++){
+            String name = ("Socks0000" + i);
             double price = ((double) gen.nextInt(2000))/100;
             String color = colors.get(gen.nextInt(6));
-            Product socks = new Socks(price, 1, color);
-            //store1.add(socks);
+            Product socks = new Socks(name, price, 1, color);
+            System.out.println(socks);
+            this.add(socks.productName, socks);
+            //System.out.println(ProductMap.get(socks.productName));
         }
-
     }
 
     public String getName(){
         return this.name;
     }
 
-    public void add(Product p){
+    public void add(String name, Product p){
         this.PriceList.insertEnd(p);
-        this.ProductMap.add(p);
+        this.ProductMap.put(name, p);
     }
 
     public void remove(Product p){
-        if (!ProductMap.contains(p)) return;
-        this.ProductMap.remove(p);
-        this.AlphaOrderList.remove(p);
-        this.PriceList.remove(p);
-        this.DateList.remove(p);
+        if (!ProductMap.containsKey(p.productName)) return;
+        ProductMap.remove(p.productName);
+        AlphaOrderList.remove(p);
+        PriceList.remove(p);
+        DateList.remove(p);
     }
 
-    public Product get(Product p){
-        if (this.ProductMap.contains(p)) return p;
-        return null;
+    public Product get(String name){
+        return ProductMap.get(name);
     }
 
     public void showLowToHigh(){
@@ -68,7 +67,7 @@ public class Catalogue{
 
     public void showHighToLow(){
         System.out.println("Showing Price from High to Low \n");
-        this.PriceList.printFromLast();
+        PriceList.printFromLast();
     }
 
     public void showEarlyDate(){
@@ -81,8 +80,8 @@ public class Catalogue{
     }
 
     public void sortAll(){
-        this.AlphaOrderList.sortByPrice();
-        this.PriceList.sortByPrice();
-        this.DateList.sortByPrice();
+        AlphaOrderList.sortByPrice();
+        PriceList.sortByPrice();
+        DateList.sortByPrice();
     }
 }

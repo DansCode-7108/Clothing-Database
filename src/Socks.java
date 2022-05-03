@@ -8,7 +8,8 @@ public class Socks extends Product {
         this.numberInStock = 1;
     }
 
-    public Socks(double price, int stockCount, String color){
+    public Socks(String name, double price, int stockCount, String color){
+        this.productName = name;
         this.price = price;
         this.numberInStock = stockCount;
         this.color = color;

@@ -7,7 +7,6 @@ public class LinkedList {
     public LinkedList() {
         head.next = last;
         last.prev = head;
-        last.next = null;
     }
 
     // Node class for creating nodes
@@ -25,48 +24,47 @@ public class LinkedList {
 
     // Insert node in the beginning
     public void insertBeginning(Product p) {
-        insert(this.head, p);
+        Node newNode = new Node(p);
+        newNode.next = head.next;
+        newNode.next.prev = newNode;
+        head.next = newNode;
+        newNode.prev = head;
     }
 
     // Insert after any given node
     public void insert(Node refNode, Product p) {
         if (refNode == last){
             insertEnd(p);
-            return;
-        }
-        if (null == refNode) {
+        } else if (null == refNode) {
             System.out.println("The reference node cannot be null");
-            return;
+        } else {
+            Node newNode = new Node(p);
+            newNode.next = refNode.next;
+            newNode.next.prev = newNode;
+            refNode.next = newNode;
+            newNode.prev = refNode;
         }
-
-        Node newNode = new Node(p);
-        newNode.next = refNode.next;
-        newNode.next.prev = newNode;
-        refNode.next = newNode;
-        newNode.prev = refNode;
     }
 
     // Insert at the end node
     public void insertEnd(Product p) {
-
-        if (head.next == last) {
-            insertBeginning(p);
-            return;
+        if (last.contents != null) {
+            Node newNode = new Node(p);
+            last.next = newNode;
+            newNode.prev = last;
+            last = newNode;
+        } else {
+            last.contents = p;
         }
-
-        Node newNode = new Node(p);
-        last.next = newNode;
-        newNode.prev = last;
-        last = newNode;
     }
 
     // Remove a node
-   public void remove(Product p) {
-       if (null == head.next) return;
+   public boolean remove(Product p) {
+       if (null == head.next) return false;
        if (last.contents == p){
            last = last.prev;
            last.next = null;
-           return;
+           return true;
        }
 
        Node front = head.next;
@@ -76,7 +74,7 @@ public class LinkedList {
            if (front.contents == p) {
                front.prev.next = front.next;
                front.next.prev = front.prev;
-               return;
+               return true;
            } else if (null != front.next){
                front = front.next;
            }
@@ -84,16 +82,17 @@ public class LinkedList {
            if (back.contents == p){
                back.prev.next = back.next;
                back.next.prev = back.prev;
-               return;
+               return true;
            } else if (null != back.prev){
                back = back.prev;
            }
        }
+       return false;
    }
 
     // Search a node to see if it exists
     boolean search(Product p) {
-        Node currentNode = head;
+        Node currentNode = head.next;
         while (currentNode != null) {
             if (currentNode.contents == p) return true;
             currentNode = currentNode.next;
@@ -125,8 +124,9 @@ public class LinkedList {
 
     // Print the linked list
     public void printFromHead() {
-        Node current = head;
+        Node current = head.next.next;
         while (current != null) {
+            System.out.println("Gets Here");
             System.out.println(current.contents.toString() + "\n");
             current = current.next;
         }
