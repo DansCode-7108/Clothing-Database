@@ -1,21 +1,27 @@
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Random;
 
 public class Catalogue{
 
+    private final String name;
     private final HashMap<Integer, String> filter = new HashMap<>();
-    private final LinkedList PriceList;
+    private final HashSet<Product> ProductMap = new HashSet<>();
+    private final LinkedList PriceList, AlphaOrderList, DateList;
 
     /**
      * Constructor
      */
-    public Catalogue(){
+    public Catalogue(String str){
+        this.name = str;
         filter.put(0, "Price: LowToHigh");
         filter.put(1, "Price: HighToLow");
         filter.put(2, "Date: Earlier");
         filter.put(3, "Date: Later");
 
-        PriceList = new LinkedList();
-
+        this.AlphaOrderList = new LinkedList();
+        this.PriceList = new LinkedList();
+        this.DateList = new LinkedList();
     }
 
     public void filterItems(int type){
@@ -33,17 +39,46 @@ public class Catalogue{
         }
     }
 
+    public void fill(int num){
+        HashMap<Integer, String> colors = new HashMap<>();
+        colors.put(0, "Purple");
+        colors.put(1, "Blue");
+        colors.put(2, "Green");
+        colors.put(3, "Yellow");
+        colors.put(4, "Orange");
+        colors.put(5, "Red");
+
+        Random gen = new Random();
+
+        for(int i = 0; i < 5; i++){
+            double price = ((double) gen.nextInt(2000))/100;
+            String color = colors.get(gen.nextInt(6));
+            Product socks = new Socks(price, 1, color);
+            //store1.add(socks);
+        }
+
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
     public void add(Product p){
         PriceList.insertEnd(p);
+        ProductMap.add(p);
     }
 
     public void remove(Product p){
-
+        if (!ProductMap.contains(p)) return;
+        ProductMap.remove(p);
+        AlphaOrderList.remove(p);
+        PriceList.remove(p);
+        DateList.remove(p);
     }
 
     public Product get(Product p){
-
-        return p;
+        if (ProductMap.contains(p)) return p;
+        return null;
     }
 
     public void showLowToHigh(){
@@ -66,6 +101,8 @@ public class Catalogue{
     }
 
     public void sortAll(){
-        PriceList.sortList();
+        this.AlphaOrderList.sortList();
+        this.PriceList.sortList();
+        this.DateList.sortList();
     }
 }

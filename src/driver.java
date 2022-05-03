@@ -1,35 +1,54 @@
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
+
+public class driver{
+    public final static Scanner scan = new Scanner(System.in);
+    public final static InputMismatchException StringInputException = new InputMismatchException("Please Input Text");
+
+    public static boolean yesNoInput() throws InputMismatchException{
+        String textInput = scan.nextLine();
+        if (textInput.equals("yes")) {
+            return true;
+        } else if (textInput.equals("no")){
+            return false;
+        } else {
+            throw StringInputException;}
+    }
+
+    public static void main(String[] args) throws InputMismatchException{
+        String textInput;
+        boolean ExitStatus = false;
 
 
-public class driver extends Exception{
+        while (!ExitStatus) {
+            try {
+                System.out.println("Would you Like to Create a New Catalogue? (yes/no)");
+                textInput = scan.nextLine().toLowerCase();
 
-    public static void main(String[] args){
-        Catalogue store1 = new Catalogue();
+                if (textInput.equals("yes")) {
+                    System.out.println("What is this Catalogue's Name?");
+                    textInput = scan.nextLine();
+                    Catalogue cat = new Catalogue(textInput);
 
+                    System.out.println("Should we Initialize this Catalogue with Products? (yes/no)");
+                    if (yesNoInput()){
+                        cat.fill(scan.nextInt());
+                    }
 
+                } else if (textInput.equals("no")){
+                    ExitStatus = true;
+                } else throw StringInputException;
 
-        HashMap<Integer, String> colors = new HashMap<>();
-        colors.put(0, "Purple");
-        colors.put(1, "Blue");
-        colors.put(2, "Green");
-        colors.put(3, "Yellow");
-        colors.put(4, "Orange");
-        colors.put(5, "Red");
-
-        Random gen = new Random();
-
-        for(int i = 0; i < 100; i++){
-            double price = ((double) gen.nextInt(2000))/100;
-            String color = colors.get(gen.nextInt(6));
-            Product socks = new Socks(price, 1, color);
-            store1.add(socks);
+            } catch (InputMismatchException exception) {
+                throw StringInputException;
+            }
         }
 
-        store1.filterItems(0);
-        store1.sortAll();
-        store1.showLowToHigh();
+
+
+        //store1.filterItems(0);
+        //store1.sortAll();
+        //store1.showLowToHigh();
 
 
         //int filterType = 0;

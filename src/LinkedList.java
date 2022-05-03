@@ -25,20 +25,15 @@ public class LinkedList {
 
     // Insert node in the beginning
     public void insertBeginning(Product p) {
-        // insert the data
-        Node newNode = new Node(p);
-        newNode.next = head.next;
-        newNode.next.prev = newNode;
-        head.next = newNode;
-        newNode.prev = head;
-
-        if (head.next == last) {
-            last = newNode;
-        }
+        insert(this.head, p);
     }
 
     // Insert after any given node
     public void insert(Node refNode, Product p) {
+        if (refNode == last){
+            insertEnd(p);
+            return;
+        }
         if (null == refNode) {
             System.out.println("The reference node cannot be null");
             return;
@@ -49,10 +44,6 @@ public class LinkedList {
         newNode.next.prev = newNode;
         refNode.next = newNode;
         newNode.prev = refNode;
-
-        if (refNode == last) {
-            last = newNode;
-        }
     }
 
     // Insert at the end node
@@ -66,34 +57,39 @@ public class LinkedList {
         Node newNode = new Node(p);
         last.next = newNode;
         newNode.prev = last;
-        newNode.next = null;
         last = newNode;
     }
 
-    // Delete a node
-   //public void delete(Product p) {
-   //    if ((last.contents == p) && (last.next == null)) return;
+    // Remove a node
+   public void remove(Product p) {
+       if (null == head.next) return;
+       if (last.contents == p){
+           last = last.prev;
+           last.next = null;
+           return;
+       }
 
-   //    Node current = head;
+       Node front = head.next;
+       Node back = last;
 
-   //    if (index == 0) {
-   //        head = current.next;
-   //        return;
-   //    }
+       while (front != back) {
+           if (front.contents == p) {
+               front.prev.next = front.next;
+               front.next.prev = front.prev;
+               return;
+           } else if (null != front.next){
+               front = front.next;
+           }
 
-   //    // Find the index node to be deleted
-   //    for (int i = 0; null != current.next && i < index - 1; i++) {
-   //        current = current.next;
-   //    }
-
-   //    // If the index is not present
-   //    if (current == null || current.next == null) return;
-
-   //    // Remove
-   //    Node next = current.next.next;
-
-   //    current.next = next;
-   //}
+           if (back.contents == p){
+               back.prev.next = back.next;
+               back.next.prev = back.prev;
+               return;
+           } else if (null != back.prev){
+               back = back.prev;
+           }
+       }
+   }
 
     // Search a node to see if it exists
     boolean search(Product p) {
@@ -108,26 +104,22 @@ public class LinkedList {
     // Sorts the linked list using bubble sort
     public void sortList() {
         Node current = this.head;
-        Node index = null;
+        Node index;
         double temp;
 
-        if (head.next == null) return;
+        while (current != null) {
+            // Index points to the next node
+            index = current.next;
 
-        else {
-            while (current != null) {
-                // Index points to the next node
-                index = current.next;
-
-                while (index != null) {
-                    if (current.contents.price > index.contents.price) {
-                        temp = current.contents.price;
-                        current.contents.price = index.contents.price;
-                        index.contents.price = temp;
-                    }
-                    index = index.next;
+            while (index != null) {
+                if (current.contents.price > index.contents.price) {
+                    temp = current.contents.price;
+                    current.contents.price = index.contents.price;
+                    index.contents.price = temp;
                 }
-                current = current.next;
+                index = index.next;
             }
+            current = current.next;
         }
     }
 
