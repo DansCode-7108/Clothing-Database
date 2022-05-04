@@ -138,9 +138,9 @@ public class LinkedList {
      *
      */
     public void sortByPrice() {
-        Node current = this.head;
+        Node current = this.head.next;
         Node index;
-        double temp;
+        Product temp;
 
         while (current != null) {
             // Index points to the next node
@@ -148,9 +148,9 @@ public class LinkedList {
 
             while (index != null) {
                 if (current.contents.price > index.contents.price) {
-                    temp = current.contents.price;
-                    current.contents.price = index.contents.price;
-                    index.contents.price = temp;
+                    temp = current.contents;
+                    current.contents = index.contents;
+                    index.contents = temp;
                 }
                 index = index.next;
             }
@@ -164,7 +164,6 @@ public class LinkedList {
     public void printFromHead() {
         Node current = head.next.next;
         while (current != null) {
-            System.out.println("Gets Here");
             System.out.println(current.contents.toString() + "\n");
             current = current.next;
         }
