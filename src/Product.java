@@ -2,9 +2,9 @@
 import java.util.Date;
 
 /**
- *
+ * Product Class
+ * Authors: Dan Lorenzo, Matthew Sirois, Sebastian Arreola
  */
-
 public class Product {
     public double price;
     public String color;
@@ -69,6 +69,7 @@ public class Product {
 
     /**
      *
+     * @param count
      */
     private void decrementStock(int count){
         numberInStock -= count;
@@ -81,6 +82,7 @@ public class Product {
 
     /**
      *
+     * @return
      */
     public String toString(){
         return ("Item Name: " + this.productName
@@ -102,15 +104,4 @@ public class Product {
             System.out.println("Please select a smaller quantity.");
         }
     }
-
-    //public String generateItemID(){
-    //    String ID = "";
-    //
-    //    return ID;
-    //}
-
-    //public void storeItemID(int itemID){
-    //
-    //}
-
 }

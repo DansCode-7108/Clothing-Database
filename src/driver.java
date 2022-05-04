@@ -1,10 +1,21 @@
 
 import java.util.*;
 
+/**
+ * driver Class used to run and test the Catalogue Program
+ * Authors: Dan Lorenzo, Matthew Sirois, Sebastian Arreola
+ */
 public class driver{
     public final static Scanner scan = new Scanner(System.in);
     public final static InputMismatchException StringInputException = new InputMismatchException();
 
+    /**
+     * yesNoInput() method used to check "yes" and "no" user inputs
+     * @return
+     * Returns a boolean value: They represent the two possible user inputs.
+     * @throws InputMismatchException
+     * Throws the InputMismatchException StringInputException if the input is not recognized.
+     */
     public static boolean yesNoInput() throws InputMismatchException{
         String input = scan.nextLine();
         input = input.toLowerCase();
@@ -16,6 +27,13 @@ public class driver{
             throw StringInputException;}
     }
 
+    /**
+     * setQuantity() method used to take an integer input from the user.
+     * @return
+     * Returns an integer input if it is within the designated range.
+     * @throws InputMismatchException
+     * Throws and catches the InputMismatchException if input is not an integer.
+     */
     public static int setQuantity() throws InputMismatchException{
         try {
             int value = scan.nextInt();
@@ -30,85 +48,53 @@ public class driver{
         return 0;
     }
 
+    /**
+     * main method
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception{
         String textInput;
-        int numInput;
         boolean ExitStatus = false;
 
+        // While loop probes for user input, controlling the flow of the program
         while (!ExitStatus) {
             try {
                 System.out.println("Would you Like to Create a New Catalogue? (yes/no)");
                 textInput = scan.nextLine();
 
+                // Forces user to input string with the correct format
                 while (!textInput.equals("yes") && !textInput.equals("no")){
                     System.out.println("Please Enter \"yes\" or \"no\"");
                     textInput = scan.nextLine();
                 }
 
                 if (textInput.equals("yes")) {
+                    // Initiates the creation of a new catalogue
                     System.out.println("What is this Catalogue's Name?");
                     textInput = scan.nextLine();
-                    Catalogue cat = new Catalogue(textInput);
+                    Catalogue cat = new Catalogue(textInput);   // Catalogue object instantiation
 
                     System.out.println("Should we Initialize this Catalogue with Products? (yes/no)");
                     if (yesNoInput()){
+                        // Begins population of catalogue with Product type objects
                         System.out.println("How Many Items Should it be Initialized with?");
                         System.out.println("Enter a Number between 0 and 10000");
-                        cat.fill(setQuantity());
-                        cat.sortAll();
-                        cat.showLowToHigh();
-                        cat.showHighToLow();
+                        cat.fill(setQuantity());    // Checks for valid quantity and populates catalogue
+                        cat.sortAll();  // Sorts all unsorted product storage methods
+                        cat.showLowToHigh();    // Displays products from low to high price
+                        cat.showHighToLow();    // Displays products from high to low price
                     }
 
-                } else if (textInput.equals("no")){
-                    ExitStatus = true;
-                } else throw StringInputException;
+                } else {
+                    ExitStatus = true;  // Ends program execution
+                }
 
-                System.out.println("It gets here");
             }
+            // Catches any InputMismatchException
             catch (InputMismatchException StringInputException) {
                 System.out.println("Please Enter \"yes\" or \"no\"");
             }
         }
-
-
-
-        //store1.filterItems(0);
-        //store1.sortAll();
-        //store1.showLowToHigh();
-
-
-        //int filterType = 0;
-        //store1.setFilter(filterType);
-
-        //store1.add(socks1);
-
-        //socks1.setStockCount(3);
-        //socks1.toString();
-        //socks1.sell(1);
-        //socks1.sell(2);
-
-
-        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-        //LocalDateTime today = LocalDateTime.now();
-        //System.out.println(dtf.format(today));//
-        //LocalDateTime alsoToday = LocalDateTime.now();
-        //System.out.println(dtf.format(alsoToday));//
-        //System.out.println(today.compareTo(alsoToday));//
-        //Date date = new Date();
-        //System.out.println(date);
-
-
-
-        //System.out.println("Linked list: ");
-        //list.printList();
-
-        //System.out.println("After deleting: ");
-        //list.delete(3);
-        //list.printList();
-
-        //list.sortList(list.head);
-        //System.out.println("\nSorted List: ");
-        //list.printList();
     }
 }

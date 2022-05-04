@@ -1,20 +1,36 @@
 
-
+/**
+ * LinkedList Class
+ * This class is used to create, maintain, and edit
+ * linked lists holding Product Class objects.
+ * Authors: Dan Lorenzo, Matthew Sirois, Sebastian Arreola
+ */
 public class LinkedList {
     Node head = new Node(new Product());
     Node last = new Node(new Product());
 
+    /**
+     * LinkedList Constructor
+     */
     public LinkedList() {
         head.next = last;
         last.prev = head;
     }
 
-    // Node class for creating nodes
+    /**
+     * Node Class
+     * Nested class in LinkedList designed to handle the creation of linked list nodes
+     * Node store a Product type object with next and previous pointers
+     */
     public static class Node {
         Product contents;
         Node next;
         Node prev;
 
+        /**
+         *
+         * @param p
+         */
         public Node(Product p) {
             contents = p;
             next = null;
@@ -22,7 +38,10 @@ public class LinkedList {
         }
     }
 
-    // Insert node in the beginning
+    /**
+     *
+     * @param p
+     */
     public void insertBeginning(Product p) {
         Node newNode = new Node(p);
         newNode.next = head.next;
@@ -31,7 +50,11 @@ public class LinkedList {
         newNode.prev = head;
     }
 
-    // Insert after any given node
+    /**
+     *
+     * @param refNode
+     * @param p
+     */
     public void insert(Node refNode, Product p) {
         if (refNode == last){
             insertEnd(p);
@@ -46,7 +69,10 @@ public class LinkedList {
         }
     }
 
-    // Insert at the end node
+    /**
+     *
+     * @param p
+     */
     public void insertEnd(Product p) {
         if (last.contents != null) {
             Node newNode = new Node(p);
@@ -58,8 +84,12 @@ public class LinkedList {
         }
     }
 
-    // Remove a node
-   public boolean remove(Product p) {
+    /**
+     *
+     * @param p
+     * @return
+     */
+    public boolean remove(Product p) {
        if (null == head.next) return false;
        if (last.contents == p){
            last = last.prev;
@@ -90,7 +120,11 @@ public class LinkedList {
        return false;
    }
 
-    // Search a node to see if it exists
+    /**
+     *
+     * @param p
+     * @return
+     */
     boolean search(Product p) {
         Node currentNode = head.next;
         while (currentNode != null) {
@@ -100,7 +134,9 @@ public class LinkedList {
         return false;
     }
 
-    // Sorts the linked list using bubble sort
+    /**
+     *
+     */
     public void sortByPrice() {
         Node current = this.head;
         Node index;
@@ -122,7 +158,9 @@ public class LinkedList {
         }
     }
 
-    // Print the linked list
+    /**
+     *
+     */
     public void printFromHead() {
         Node current = head.next.next;
         while (current != null) {
@@ -132,6 +170,9 @@ public class LinkedList {
         }
     }
 
+    /**
+     *
+     */
     public void printFromLast(){
         Node current = last;
         while (current != head) {
