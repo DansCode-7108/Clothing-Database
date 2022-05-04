@@ -13,6 +13,7 @@ public class Coat extends Product{
     public Coat(){
         this.price = 0;
         this.numberInStock = 1;
+        this.status = ProductStatus.InStock;
     }
 
     /**
@@ -25,7 +26,8 @@ public class Coat extends Product{
      * @param color
      * Color of item
      */
-    public Coat(double price, int stockCount, String color){
+    public Coat(String name, double price, int stockCount, String color){
+        this.productName = name;
         this.price = price;
         this.numberInStock = stockCount;
         this.color = color;

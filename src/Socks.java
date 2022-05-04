@@ -13,6 +13,7 @@ public class Socks extends Product {
     public Socks(){
         this.price = 0;
         this.numberInStock = 1;
+        this.status = ProductStatus.InStock;
     }
 
     /**

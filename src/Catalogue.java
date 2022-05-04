@@ -3,6 +3,7 @@ import java.util.Random;
 
 /**
  * Catalogue Class
+ * The Catalogue object manages all products stored by the user.
  * Authors: Dan Lorenzo, Matthew Sirois, Sebastian Arreola
  */
 public class Catalogue{
@@ -16,6 +17,8 @@ public class Catalogue{
     /**
      * Catalogue Constructor
      * @param str
+     * Name of the catalogue.
+     * This is for the user to reference through the UI.
      */
     public Catalogue(String str){
         this.name = str;
@@ -32,8 +35,11 @@ public class Catalogue{
     }
 
     /**
-     *
+     * fill() method
+     * Fills the catalogue with a user-determined number of products.
+     * This is mainly for testing purposes.
      * @param num
+     * Number of products to be added.
      */
     public void fill(int num){
         for(int i = 0; i < num; i++){
@@ -47,17 +53,22 @@ public class Catalogue{
     }
 
     /**
-     *
+     * getName() method
      * @return
+     * Returns the name of the Catalogue object
      */
     public String getName(){
         return this.name;
     }
 
     /**
-     *
+     * add() method
+     * Adds the new product to every storage structure in its respective format.
+     * This functions to keep all storage structures in sync with one another.
      * @param name
+     * Name of the new product
      * @param p
+     * Reference to the product
      */
     public void add(String name, Product p){
         this.PriceList.insertEnd(p);
@@ -65,8 +76,11 @@ public class Catalogue{
     }
 
     /**
-     *
+     * remove() method
+     * Removes an existing product from all storage structures.
+     * This functions to keep all storage structures in sync with one another.
      * @param p
+     * Reference to the product to be removed
      */
     public void remove(Product p){
         if (!ProductMap.containsValue(p)) return;
@@ -77,16 +91,20 @@ public class Catalogue{
     }
 
     /**
-     *
+     * get() method
+     * Gets the details of a product stored in the catalogue
      * @param name
+     * Name of the product
      * @return
+     * Returns a product type object stored under the given key
      */
     public Product get(String name){
         return ProductMap.get(name);
     }
 
     /**
-     *
+     * showLowtoHigh() method
+     * Shows all products from the lowest price to the highest price
      */
     public void showLowToHigh(){
         System.out.println("Showing Price from Low to High \n");
@@ -94,7 +112,8 @@ public class Catalogue{
     }
 
     /**
-     *
+     * showHighToLow() method
+     * Shows all products from the highest price to the lowest price.
      */
     public void showHighToLow(){
         System.out.println("Showing Price from High to Low \n");
@@ -102,7 +121,8 @@ public class Catalogue{
     }
 
     /**
-     *
+     * showEarlyDate() method
+     * Shows all products from the earliest to latest to be added to the catalogue.
      */
     public void showEarlyDate(){
         System.out.println("Showing Date from Earliest to Latest \n");
@@ -110,18 +130,18 @@ public class Catalogue{
     }
 
     /**
-     *
+     * showLaterDate() method
+     * Shows all products from the latest to earliest to be added to the catalogue.
      */
     public void showLaterDate(){
         System.out.println("Showing Date from Latest to Earliest \n");
     }
 
     /**
-     *
+     * sortAll() method
+     * Sorts all storage structures with their respective criteria
      */
     public void sortAll(){
-        AlphaOrderList.sortByPrice();
         PriceList.sortByPrice();
-        DateList.sortByPrice();
     }
 }

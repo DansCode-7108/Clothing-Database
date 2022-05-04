@@ -28,8 +28,9 @@ public class LinkedList {
         Node prev;
 
         /**
-         *
+         * Node Constructor
          * @param p
+         * Product type object to be stored as the node contents
          */
         public Node(Product p) {
             contents = p;
@@ -39,8 +40,10 @@ public class LinkedList {
     }
 
     /**
-     *
+     * insertBeginning method
+     * Inserts a new node containing a product just after the head node
      * @param p
+     * Product type object to be inserted
      */
     public void insertBeginning(Product p) {
         Node newNode = new Node(p);
@@ -51,9 +54,12 @@ public class LinkedList {
     }
 
     /**
-     *
+     * insert() method
+     * Inserts a product into any position in the linked list
      * @param refNode
+     * Reference node which is given by the
      * @param p
+     * Product type object to be inserted
      */
     public void insert(Node refNode, Product p) {
         if (refNode == last){
@@ -70,8 +76,10 @@ public class LinkedList {
     }
 
     /**
-     *
+     * insertEnd() method
+     * Inserts a product after the last node in the linked list
      * @param p
+     * Product type object to be inserted
      */
     public void insertEnd(Product p) {
         if (last.contents != null) {
@@ -85,9 +93,12 @@ public class LinkedList {
     }
 
     /**
-     *
+     * remove() method
+     * Removed a product from the linked list
      * @param p
+     * Product to be removed
      * @return
+     * Returns TRUE if the product has been successfully removed
      */
     public boolean remove(Product p) {
        if (null == head.next) return false;
@@ -97,9 +108,12 @@ public class LinkedList {
            return true;
        }
 
+       // Starts one pointer from either end of the linked list
        Node front = head.next;
        Node back = last;
 
+       // Moves pointers one at a time until either pointer meets the
+       // node to be removed or until the pointers meet one another.
        while (front != back) {
            if (front.contents == p) {
                front.prev.next = front.next;
@@ -121,11 +135,15 @@ public class LinkedList {
    }
 
     /**
-     *
+     * search() method
+     * Searches for a particular product stored within the linked list.
+     * Can be used to cross-check contents of the linked list.
      * @param p
+     * Product being seeked
      * @return
+     * Returns TRUE if the product exists
      */
-    boolean search(Product p) {
+    public boolean search(Product p) {
         Node currentNode = head.next;
         while (currentNode != null) {
             if (currentNode.contents == p) return true;
@@ -135,7 +153,9 @@ public class LinkedList {
     }
 
     /**
-     *
+     * sortByPrice() method
+     * Sorts the entire linked list from lowest to highest price
+     * using the bubble-sort sorting algorithm
      */
     public void sortByPrice() {
         Node current = this.head.next;
@@ -161,6 +181,7 @@ public class LinkedList {
     /**
      * printFromHead() method
      * Prints contents of entire linked list starting at head node
+     * Contents of a sorted list should read from lowest to highest in value
      */
     public void printFromHead() {
         Node current = head.next.next;
@@ -173,6 +194,7 @@ public class LinkedList {
     /**
      * printFromLast()
      * Prints contents of entire linked list starting at last node
+     * Contents of a sorted list should read from highest to lowest value
      */
     public void printFromLast(){
         Node current = last;

@@ -13,6 +13,7 @@ public class Beanie extends Product{
     public Beanie(){
         this.price = 0;
         this.numberInStock = 1;
+        this.status = ProductStatus.InStock;
     }
 
     /**
@@ -25,7 +26,8 @@ public class Beanie extends Product{
      * @param color
      * Color of item
      */
-    public Beanie(double price, int stockCount, String color){
+    public Beanie(String name, double price, int stockCount, String color){
+        this.productName = name;
         this.price = price;
         this.numberInStock = stockCount;
         this.color = color;
