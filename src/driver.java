@@ -84,6 +84,7 @@ public class driver{
                         cat.sortAll();  // Sorts all unsorted product storage methods
                         cat.showLowToHigh();    // Displays products from low to high price
                         cat.showHighToLow();    // Displays products from high to low price
+
                     }
 
                 } else {

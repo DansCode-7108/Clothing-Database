@@ -159,7 +159,8 @@ public class LinkedList {
     }
 
     /**
-     *
+     * printFromHead() method
+     * Prints contents of entire linked list starting at head node
      */
     public void printFromHead() {
         Node current = head.next.next;
@@ -170,7 +171,8 @@ public class LinkedList {
     }
 
     /**
-     *
+     * printFromLast()
+     * Prints contents of entire linked list starting at last node
      */
     public void printFromLast(){
         Node current = last;

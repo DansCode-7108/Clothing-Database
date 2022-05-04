@@ -43,7 +43,6 @@ public class Catalogue{
             Product socks = new Socks(name, price, 1, color);
             System.out.println(socks);
             this.add(socks.productName, socks);
-            //System.out.println(ProductMap.get(socks.productName));
         }
     }
 
@@ -70,7 +69,7 @@ public class Catalogue{
      * @param p
      */
     public void remove(Product p){
-        if (!ProductMap.containsKey(p.productName)) return;
+        if (!ProductMap.containsValue(p)) return;
         ProductMap.remove(p.productName);
         AlphaOrderList.remove(p);
         PriceList.remove(p);
